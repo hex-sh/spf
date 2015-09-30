@@ -6,7 +6,7 @@
 
 Add spf to your list of dependencies in `mix.exs`:
 
-```
+``` elixir
 def deps do
   [{:spf, "~> 0.0.1"}]
 end
@@ -14,7 +14,7 @@ end
 
 Ensure spf is started before your application:
 
-```
+``` elixir
 def application do
   [applications: [:spf]]
 end
