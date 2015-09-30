@@ -1,7 +1,7 @@
 defmodule SPF.Policy do
   alias SPF.Policy.Rule
 
-  defstruct rules: []
+  defstruct rules: [], domain: nil
 
   @doc """
   Prepend a `rule` to the `rules` of the policy.
@@ -25,17 +25,17 @@ defmodule SPF.Policy do
     res
     |> Enum.join
     |> to_string
-    |> parse
+    |> parse(domain)
   end
 
-  defp parse("v=spf1" <> policy) do
+  defp parse("v=spf1" <> policy, domain) do
     rules = policy
     |> String.split
 
     IO.puts(inspect(rules))
     rules = Enum.map(rules, &Rule.parse/1)
 
-    %__MODULE__{rules: rules}
+    %__MODULE__{rules: rules domain: domain}
   end
 
   defp parse(policy) do
