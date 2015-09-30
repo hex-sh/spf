@@ -1,4 +1,4 @@
-defmodule SPF.Policy.Rule do
+defmodule SPF.Rule do
   defstruct mechanism: :all, qualifier: :pass, filter: nil
 
   @doc """

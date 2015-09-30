@@ -1,21 +1,7 @@
 defmodule SPF.Policy do
-  alias SPF.Policy.Rule
+  alias SPF.Rule
 
   defstruct rules: [], domain: nil
-
-  @doc """
-  Prepend a `rule` to the `rules` of the policy.
-  """
-  def prepend(rule, %SPF.Policy{rules: rules}) do
-    %SPF.Policy{rules: [rule | rules]}
-  end
-
-  @doc """
-  Append a `rule` to the `rules` of the policy.
-  """
-  def append(rule, %SPF.Policy{rules: rules}) do
-    %SPF.Policy{rules: rules ++ [rule]}
-  end
 
   @doc """
   Lookup the SPF Policy for a `domain`.
