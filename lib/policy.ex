@@ -31,11 +31,9 @@ defmodule SPF.Policy do
   defp parse("v=spf1" <> policy, domain) do
     rules = policy
     |> String.split
+    |> Enum.map(&Rule.parse/1)
 
-    IO.puts(inspect(rules))
-    rules = Enum.map(rules, &Rule.parse/1)
-
-    %__MODULE__{rules: rules domain: domain}
+    %__MODULE__{rules: rules, domain: domain}
   end
 
   defp parse(policy) do
