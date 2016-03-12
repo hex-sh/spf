@@ -1,8 +1,4 @@
 defmodule SPF.Policy do
-  alias SPF.Rule
-
-  defstruct rules: [], domain: nil
-
   @doc """
   Lookup the SPF Policy for a `domain`.
   """
@@ -11,18 +7,5 @@ defmodule SPF.Policy do
     res
     |> Enum.join
     |> to_string
-    |> parse(domain)
-  end
-
-  defp parse("v=spf1" <> policy, domain) do
-    rules = policy
-    |> String.split
-    |> Enum.map(&Rule.parse/1)
-
-    %__MODULE__{rules: rules, domain: domain}
-  end
-
-  defp parse(policy) do
-    {:error, "Policy does not start with SPF version."}
   end
 end
